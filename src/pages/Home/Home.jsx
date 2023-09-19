@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import apiUrl from "../../api/api"
 import Card from "../../components/Card/Card";
-import Aside from "../../Components/ProductDetail/ProductDetail";
+
 import ProductDetail from "../../Components/ProductDetail/ProductDetail";
 
 const Home = () => {

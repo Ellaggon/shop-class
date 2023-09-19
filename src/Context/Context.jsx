@@ -11,15 +11,18 @@ export const ShopingCardProvider = ({children}) => {
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false)
   const openProductDetail = () => setIsProductDetailOpen(true)
   const closeProductDetail = () => setIsProductDetailOpen(false)
-
+  
   // Product Detail - Show product
   //Utilizamos parametros en el useState por error de "images[0]"
   const [productToShow, setProductToShow] = useState({
-    title: "",
-    price: "",
-    description: "",
-    images: [],
+    // title: "",
+    // price: "",
+    // description: "",
+    // images: [],
   });
+  
+  // Shopping card - add products to card
+  const [cardProducts, setCardProducts] = useState([])
 
   return (
     <ShopingCardContext.Provider value={{
@@ -29,7 +32,9 @@ export const ShopingCardProvider = ({children}) => {
       closeProductDetail,
       isProductDetailOpen,
       productToShow,
-      setProductToShow
+      setProductToShow,
+      cardProducts,
+      setCardProducts
     }}> 
       {children}
     </ShopingCardContext.Provider>

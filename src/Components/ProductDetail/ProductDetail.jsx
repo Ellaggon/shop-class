@@ -3,7 +3,6 @@ import { ShopingCardContext } from "../../Context/Context";
 
 const ProductDetail = ( ) => {
   const context = useContext(ShopingCardContext);
-  console.log("Product to show:", context.productToShow)
 
   return (
     <aside 
@@ -21,7 +20,7 @@ const ProductDetail = ( ) => {
       <figure className="px-6">
         <img 
         className="w-full h-full rounded-lg"
-        src={context.productToShow.images[0]} 
+        src={context.productToShow.images?.[0]} 
         alt={context.productToShow.title} />
       </figure>
       <p className="flex flex-col p-6">
