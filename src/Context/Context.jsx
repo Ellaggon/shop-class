@@ -11,6 +11,11 @@ export const ShopingCardProvider = ({children}) => {
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false)
   const openProductDetail = () => setIsProductDetailOpen(true)
   const closeProductDetail = () => setIsProductDetailOpen(false)
+
+  // Checkout Side Menu - Open/Close
+  const [isCheckoutMenuOpen, setIsCheckoutMenuOpen] = useState(false)
+  const openCheckoutMenu = () => setIsCheckoutMenuOpen(true)
+  const closeCheckoutMenu = () => setIsCheckoutMenuOpen(false)
   
   // Product Detail - Show product
   //Utilizamos parametros en el useState por error de "images[0]"
@@ -34,7 +39,10 @@ export const ShopingCardProvider = ({children}) => {
       productToShow,
       setProductToShow,
       cardProducts,
-      setCardProducts
+      setCardProducts,
+      openCheckoutMenu,
+      closeCheckoutMenu,
+      isCheckoutMenuOpen
     }}> 
       {children}
     </ShopingCardContext.Provider>
