@@ -1,11 +1,15 @@
 import { useContext } from "react";
 import { ShopingCardContext } from "../../Context/Context";
 import OrderCard from "../OrderCard/OrderCard";
-import "./CheckoutSideMenu.css"
 
 const CheckoutSideMenu = ( ) => {
   const context = useContext(ShopingCardContext);
-  console.log("card: ", context.cardProducts)
+
+  const handleDelete = (id) => {
+    const filteredProducts = context.cardProducts.filter(product => product.id != id)
+    context.setCardProducts(filteredProducts)
+    context.setCount(context.count -1)
+  }
 
   return (
     <aside 
@@ -20,10 +24,10 @@ const CheckoutSideMenu = ( ) => {
         </svg>
         </button>
       </div>
-      <div className="px-4">
+      <div className="px-4 overflow-y-scroll">
       {
         context.cardProducts?.map(el => (
-          <OrderCard key={el.id} {...el}/>
+          <OrderCard key={el.id} handleDelete={handleDelete} {...el}/>
         ))
       }
       </div>
