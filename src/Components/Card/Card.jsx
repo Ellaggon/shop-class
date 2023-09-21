@@ -7,6 +7,7 @@ const Card = ({id, title, images, price, description, category: {name}} ) => {
   const showProduct = (el) => {
     context.openProductDetail()
     context.setProductToShow(el)
+    context.closeCheckoutMenu()
   }
   
   const addProductsToCard = (e, el) => {
@@ -15,7 +16,6 @@ const Card = ({id, title, images, price, description, category: {name}} ) => {
     context.setCount(context.count + 1)
     context.openCheckoutMenu()
     context.closeProductDetail()
-    console.log("card: ", context.cardProducts)
   }
 
   return (
