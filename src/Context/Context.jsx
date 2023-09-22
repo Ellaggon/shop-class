@@ -29,6 +29,9 @@ export const ShopingCardProvider = ({children}) => {
   // Shopping card - add products to card
   const [cardProducts, setCardProducts] = useState([])
 
+  // Shopping card - Order "creamos una orden de compra, es decir un listado con los productos escogidos en el carrito mas su info"
+  const [order, setOrder] = useState([])
+
   return (
     <ShopingCardContext.Provider value={{
       count,
@@ -42,7 +45,9 @@ export const ShopingCardProvider = ({children}) => {
       setCardProducts,
       openCheckoutMenu,
       closeCheckoutMenu,
-      isCheckoutMenuOpen
+      isCheckoutMenuOpen,
+      order,
+      setOrder
     }}> 
       {children}
     </ShopingCardContext.Provider>
