@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { ShopingCardContext } from "../../Context/Context";
 import OrderCard from "../OrderCard/OrderCard";
+import { totalPrice } from "../../utils/utils"
 
 const CheckoutSideMenu = ( ) => {
   const context = useContext(ShopingCardContext);
@@ -10,10 +11,11 @@ const CheckoutSideMenu = ( ) => {
     context.setCardProducts(filteredProducts)
     context.setCount(context.count -1)
   }
+  let sum = 0;
 
   return (
     <aside 
-    className={`${context.isCheckoutMenuOpen ? "flex" : "hidden"} scrollable-cards flex flex-col fixed right-0 border mb-3 border-black bg-white rounded-lg w-[360px] h-[calc(100vh-80px)]`}>
+    className={`${context.isCheckoutMenuOpen ? "flex" : "hidden"} scrollable-cards flex flex-col fixed right-5 border mb-3 border-black bg-white rounded-lg w-[360px] h-[calc(100vh-80px)]`}>
       <div className="flex justify-between items-center p-4">
         <h2 className="font-medium text-xl m-3">My Order</h2>
         <button
@@ -31,6 +33,10 @@ const CheckoutSideMenu = ( ) => {
         ))
       }
       </div>
+      <p className="flex items-center fixed bottom-0 right-10 mb-2 px-5 py-3 gap-10 border border-black bg-white rounded-lg font-bold">
+        <span >Total</span>
+        <span>$ {totalPrice(context.cardProducts)}</span>
+      </p>
     </aside>
   )
 }

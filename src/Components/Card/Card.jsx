@@ -37,7 +37,7 @@ const Card = ({id, title, images, price, description, category: {name}} ) => {
       </figure>
       <p className="flex justify-between">
         <span className="text-sm font-light">{title}</span>
-        <span className="text-lg font-bold">{price}</span>
+        <span className="text-lg font-bold">$ {price}</span>
       </p>
     </div>
   )

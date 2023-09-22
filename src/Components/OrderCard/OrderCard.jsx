@@ -19,7 +19,7 @@ const OrderCard = ({ id, title, images, price, handleDelete }) => {
         <p>{title}</p>
       </div>
         <div className='flex items-center'>
-          <p>{price}</p>
+          <p>${price}</p>
           <button
           className="flex justify-end items-center bg-white w-10 h-10 rounded-full"
           onClick={()=>handleDelete(id)}>
