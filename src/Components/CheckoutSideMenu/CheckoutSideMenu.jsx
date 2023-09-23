@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { ShopingCardContext } from "../../Context/Context";
 import OrderCard from "../OrderCard/OrderCard";
 import { totalPrice } from "../../utils/utils"
@@ -12,23 +13,25 @@ const CheckoutSideMenu = ( ) => {
     context.setCardProducts(filteredProducts)
     context.setCount(context.count -1)
   }
-
   // El boton Checkout mandara el listado de la orden ejecutada a una base de datos
     const handleCheckout = () => {
+
       const orderToAdd = {
         date: "22.10.23",
         products: context.cardProducts,
         quantityProducts: context.cardProducts.length,
-        totalPrice: totalPrice(context.cardProducts)
+        totalPrice: totalPrice(context.cardProducts),
       }
       context.setOrder([...context.order, orderToAdd])
       context.setCardProducts([]) // Limpia el carrito al presionar "Checkout"
       context.setCount(0)
+
+      context.closeCheckoutMenu()
     }
   
     return (
       <aside 
-      className={`${context.isCheckoutMenuOpen ? "flex" : "hidden"} scrollable-cards flex flex-col fixed right-5 border mb-3 border-black bg-white rounded-lg w-[360px] h-[calc(100vh-80px)]`}>
+      className={`${context.isCheckoutMenuOpen ? 'flex' : 'hidden'} flex-col fixed right-5 border mt-1 border-black rounded-lg bg-white w-[360px] h-[calc(100vh-80px)]`}>
         <div className="flex justify-between items-center p-4">
           <h2 className="font-medium text-xl m-3">My Order</h2>
           <button
@@ -39,22 +42,26 @@ const CheckoutSideMenu = ( ) => {
           </svg>
           </button>
         </div>
-        <div className="px-4 overflow-y-scroll flex-1 shadow-inner bg-white">
+
+        <article className="px-4 overflow-y-scroll flex-1 bg-white shadow">
         {
           context.cardProducts?.map(el => (
             <OrderCard key={el.id} handleDelete={handleDelete} {...el}/>
           ))
         }
-        </div>
-        <p className="flex justify-around items-end m-2 pt-2">
-          <span >Total</span>
-          <span>$ {totalPrice(context.cardProducts)}</span>
+        </article>
+
+        <p className="flex justify-around items-end pt-4 mx-5 font-semibold">
+          <span >TOTAL</span>
+          <span className="text-2xl">$ {totalPrice(context.cardProducts)}</span>
         </p>
-        <button 
-        onClick={() => handleCheckout()}
-        className="rounded-lg bg-black text-white my-3 mx-5 py-2">
-          Checkout
-        </button>
+        <Link className="flex justify-center" to="/my-orders/last" >
+          <button 
+          onClick={() => handleCheckout()}
+          className="rounded-lg bg-black text-white my-4 px-20 py-2">
+            Checkout
+          </button>
+        </Link>
       </aside>
     )
   }
