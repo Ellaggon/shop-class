@@ -1,32 +1,30 @@
-import { useState, useEffect } from "react"
-import apiUrl from "../../api/api"
+import { useContext } from "react"
 import Card from "../../components/Card/Card";
-
 import ProductDetail from "../../Components/ProductDetail/ProductDetail";
+import { ShopingCardContext } from "../../Context/Context";
 
 const Home = () => {
-  const [items, setItems] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(apiUrl)
-        const data = await res.json()
-        setItems(data)
-
-      } catch (error) {
-        console.error(`Ocurrio un error: ${error}`);
-      }
-    }
-    fetchData() 
-    }, [])
+  const context = useContext(ShopingCardContext);
 
   return (
 
-    <section className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
-      <h1 className="text-center">Home</h1>
+    <section className="grid gap-4 grid-cols-4 w-full max-w-screen-lg mt-3">
+      <div className="flex justify-end items-center w-60">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-20 h-20">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" />
+        </svg>
+
+      </div>
+      <div className="flex flex-col place-content-center" >
+        <h1 className="font-medium text-xl">Exclusive Products</h1>
+        <input 
+          type="text" 
+          placeholder="Search a product" 
+          className="w-48 mt-3 p-2 border border-black rounded-lg focus:outline-none"
+          onChange={(e) => context.setSearchByTitle(e.target.value)}/>
+      </div>
       {
-        items?.map((el) => (
+        context.items?.map((el) => (
           <Card key={el.id} {...el}/>
         ))
       }

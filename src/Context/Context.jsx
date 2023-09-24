@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
+import apiUrl from "../api/api"
 
 export const ShopingCardContext = createContext();
 
@@ -32,6 +33,27 @@ export const ShopingCardProvider = ({children}) => {
   // Shopping card - Order "creamos una orden de compra, es decir un listado con los productos escogidos en el carrito mas su info"
   const [order, setOrder] = useState([])
 
+
+  // Get products by search title
+  const [items, setItems] = useState(null);
+  
+  const [searchByTitle, setSearchByTitle] = useState(null);
+  console.log(searchByTitle)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(apiUrl)
+        const data = await res.json()
+        setItems(data)
+
+      } catch (error) {
+        console.error(`Ocurrio un error: ${error}`);
+      }
+    }
+    fetchData() 
+    }, [])
+
   return (
     <ShopingCardContext.Provider value={{
       count,
@@ -47,7 +69,11 @@ export const ShopingCardProvider = ({children}) => {
       closeCheckoutMenu,
       isCheckoutMenuOpen,
       order,
-      setOrder
+      setOrder,
+      items,
+      setItems,
+      searchByTitle,
+      setSearchByTitle
     }}> 
       {children}
     </ShopingCardContext.Provider>
