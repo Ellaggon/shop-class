@@ -19,13 +19,12 @@ const CheckoutSideMenu = ( ) => {
       const orderToAdd = {
         date: "22.10.23",
         products: context.cardProducts,
-        quantityProducts: context.cardProducts.length,
+        totalProducts: context.cardProducts.length,
         totalPrice: totalPrice(context.cardProducts),
       }
       context.setOrder([...context.order, orderToAdd])
       context.setCardProducts([]) // Limpia el carrito al presionar "Checkout"
       context.setCount(0)
-
       context.closeCheckoutMenu()
     }
   
