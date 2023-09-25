@@ -6,6 +6,20 @@ import { ShopingCardContext } from "../../Context/Context";
 const Home = () => {
   const context = useContext(ShopingCardContext);
 
+  const renderWiew = () => {
+    const itemsToRender = context.searchByTitle?.length > 0
+    ? context.filteredItems
+    : context.items;
+
+    if(itemsToRender?.length > 0){
+      return itemsToRender?.map(item => (
+        <Card key={item.id} {...item}/>
+      ));
+    } else {
+      return <p> No Results Found</p>;
+    };
+  }
+
   return (
 
     <section className="grid gap-4 grid-cols-4 w-full max-w-screen-lg mt-3">
@@ -20,13 +34,14 @@ const Home = () => {
         <input 
           type="text" 
           placeholder="Search a product" 
-          className="w-48 mt-3 p-2 border border-black rounded-lg focus:outline-none"
+          className="w-48 mt-1 mb-3 p-2 border border-black rounded-lg focus:outline-none"
           onChange={(e) => context.setSearchByTitle(e.target.value)}/>
       </div>
       {
-        context.items?.map((el) => (
-          <Card key={el.id} {...el}/>
-        ))
+        // context.items?.map((el) => (
+        //   <Card key={el.id} {...el}/>
+        // ))
+        renderWiew()
       }
     <ProductDetail />
     </section>

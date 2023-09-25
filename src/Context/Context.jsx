@@ -33,10 +33,11 @@ export const ShopingCardProvider = ({children}) => {
   // Shopping card - Order "creamos una orden de compra, es decir un listado con los productos escogidos en el carrito mas su info"
   const [order, setOrder] = useState([])
 
-
-  // Get products by search title
+  // Get products of api
   const [items, setItems] = useState(null);
+  const [filteredItems, setFilteredItems] = useState(null);
   
+  // Get products by search title
   const [searchByTitle, setSearchByTitle] = useState(null);
   console.log(searchByTitle)
 
@@ -53,6 +54,16 @@ export const ShopingCardProvider = ({children}) => {
     }
     fetchData() 
     }, [])
+
+  const filteredItemsByTitle = (items, searchByTitle) => {
+    return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+  }
+
+  useEffect(() => {
+    if(searchByTitle) setFilteredItems(filteredItemsByTitle(items, searchByTitle))
+    }, [items, searchByTitle])
+
+    console.log(filteredItems)
 
   return (
     <ShopingCardContext.Provider value={{
@@ -73,7 +84,9 @@ export const ShopingCardProvider = ({children}) => {
       items,
       setItems,
       searchByTitle,
-      setSearchByTitle
+      setSearchByTitle,
+      filteredItems,
+      setFilteredItems
     }}> 
       {children}
     </ShopingCardContext.Provider>
