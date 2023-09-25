@@ -18,6 +18,7 @@ const Navbar = () => {
         <li>
           <NavLink 
           to='/'
+          onClick={() => context. setSearchByCategory()}
           className={({ isActive }) => 
             isActive ? activeStyle : undefined
           }>
@@ -26,7 +27,8 @@ const Navbar = () => {
         </li>
         <li>
           <NavLink 
-          to='/clothes'
+          to="/clothes"
+          onClick={() => context. setSearchByCategory("clothes")}
           className={({ isActive }) => 
             isActive ? activeStyle : undefined
           }>
@@ -35,7 +37,8 @@ const Navbar = () => {
         </li>
         <li>
           <NavLink 
-          to='/electronics'
+          to="/electronics"
+          onClick={() => context. setSearchByCategory("electronics")}
           className={({ isActive }) => 
             isActive ? activeStyle : undefined
           }>
@@ -44,7 +47,8 @@ const Navbar = () => {
         </li>
         <li>
           <NavLink 
-          to='/fornitures'
+          to="/furniture"
+          onClick={() => context. setSearchByCategory("furniture")}
           className={({ isActive }) => 
             isActive ? activeStyle : undefined
           }>
@@ -53,16 +57,18 @@ const Navbar = () => {
         </li>
         <li>
           <NavLink 
-          to='/toys'
+          to="/shoes"
+          onClick={() => context. setSearchByCategory("shoes")}
           className={({ isActive }) => 
             isActive ? activeStyle : undefined
           }>
-            Toys
+            Shoes
           </NavLink>
         </li>
         <li>
           <NavLink 
-          to='/others'
+          to="/others"
+          onClick={() => context. setSearchByCategory("others")}
           className={({ isActive }) => 
             isActive ? activeStyle : undefined
           }>
@@ -72,17 +78,17 @@ const Navbar = () => {
       </ul>
       <ul className='flex items-center gap-3'>
         <li>
-          <NavLink to='/'>
+          <NavLink to="/">
             My Orders
           </NavLink>
         </li>
         <li>
-          <NavLink to='/clothes'>
+          <NavLink to="/clothes">
             My Account
           </NavLink>
         </li>
         <li>
-          <NavLink to='/electronics'>
+          <NavLink to="/electronics">
             Sign In
           </NavLink>
         </li>

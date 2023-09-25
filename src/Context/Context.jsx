@@ -36,11 +36,16 @@ export const ShopingCardProvider = ({children}) => {
   // Get products of api
   const [items, setItems] = useState(null);
   const [filteredItems, setFilteredItems] = useState(null);
+  console.log(filteredItems)
   
   // Get products by search title
   const [searchByTitle, setSearchByTitle] = useState(null);
-  console.log(searchByTitle)
+  
+  // Get products by search category
+  const [searchByCategory, setSearchByCategory] = useState(null);
+  console.log(searchByCategory)
 
+  //Usamos useEfect para extraer los datos mediante un fetch y async await de la API
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -55,15 +60,40 @@ export const ShopingCardProvider = ({children}) => {
     fetchData() 
     }, [])
 
+
+  // Creamos una funcion para filtrar los resultados de busqueda dentro de items
   const filteredItemsByTitle = (items, searchByTitle) => {
     return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
   }
+  const filteredItemsByCategory = (items, searchByCategory) => {
+    console.log("items: ", items)
+    return items?.filter(item => item.category.name.toLowerCase().includes(searchByCategory.toLowerCase()))
+  }
 
+  // usamos filterBy para hacer una busqueda tanto por title como por category
+  const filterBy = (searchType, items, searchByTitle, searchByCategory) => {
+    if (searchType === "BY_TITLE_&_CATEGORY"){
+      return filteredItemsByTitle(items, searchByTitle).filter(item => item.category.name.toLowerCase().includes(searchByCategory.toLowerCase()))
+    }
+    if (searchType === "BY_TITLE"){
+      return filteredItemsByTitle(items, searchByTitle)
+    }
+    if (searchType === "BY_CATEGORY"){
+      return filteredItemsByCategory(items, searchByCategory)
+    }
+    if (!searchType){
+      return items
+    }
+  }
+  
+  // Usamos un useEfect para guardar los resultados de busqueda en filteredItems
   useEffect(() => {
-    if(searchByTitle) setFilteredItems(filteredItemsByTitle(items, searchByTitle))
-    }, [items, searchByTitle])
+    if(searchByTitle && searchByCategory) setFilteredItems( filterBy("BY_TITLE_&_CATEGORY", items, searchByTitle, searchByCategory))
+    if(searchByTitle && !searchByCategory) setFilteredItems( filterBy("BY_TITLE", items, searchByTitle, searchByCategory))
+    if(!searchByTitle && searchByCategory) setFilteredItems( filterBy("BY_CATEGORY", items, searchByTitle, searchByCategory))
+    if(!searchByTitle && !searchByCategory) setFilteredItems( filterBy(null, items,  searchByTitle, searchByCategory))
+    }, [items, searchByTitle, searchByCategory])
 
-    console.log(filteredItems)
 
   return (
     <ShopingCardContext.Provider value={{
@@ -86,7 +116,9 @@ export const ShopingCardProvider = ({children}) => {
       searchByTitle,
       setSearchByTitle,
       filteredItems,
-      setFilteredItems
+      setFilteredItems,
+      searchByCategory,
+      setSearchByCategory
     }}> 
       {children}
     </ShopingCardContext.Provider>

@@ -6,8 +6,9 @@ import { ShopingCardContext } from "../../Context/Context";
 const Home = () => {
   const context = useContext(ShopingCardContext);
 
+  // renderWiew crea una condicional si existe la busqueda "searchByTitle" y si es mayor a 0 retornara los resultados filtrados sino es mayor a 0 retornara items
   const renderWiew = () => {
-    const itemsToRender = context.searchByTitle?.length > 0
+    const itemsToRender = context.filteredItems?.length > 0
     ? context.filteredItems
     : context.items;
 
@@ -38,9 +39,6 @@ const Home = () => {
           onChange={(e) => context.setSearchByTitle(e.target.value)}/>
       </div>
       {
-        // context.items?.map((el) => (
-        //   <Card key={el.id} {...el}/>
-        // ))
         renderWiew()
       }
     <ProductDetail />
