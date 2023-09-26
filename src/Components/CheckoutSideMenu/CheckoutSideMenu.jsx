@@ -26,6 +26,7 @@ const CheckoutSideMenu = ( ) => {
       context.setCardProducts([]) // Limpia el carrito al presionar "Checkout"
       context.setCount(0)
       context.closeCheckoutMenu()
+      context.setSearchByTitle(null)
     }
   
     return (

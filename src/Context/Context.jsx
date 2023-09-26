@@ -29,21 +29,19 @@ export const ShopingCardProvider = ({children}) => {
   
   // Shopping card - add products to card
   const [cardProducts, setCardProducts] = useState([])
-
+  
   // Shopping card - Order "creamos una orden de compra, es decir un listado con los productos escogidos en el carrito mas su info"
   const [order, setOrder] = useState([])
 
   // Get products of api
   const [items, setItems] = useState(null);
   const [filteredItems, setFilteredItems] = useState(null);
-  console.log(filteredItems)
   
   // Get products by search title
   const [searchByTitle, setSearchByTitle] = useState(null);
   
   // Get products by search category
   const [searchByCategory, setSearchByCategory] = useState(null);
-  console.log(searchByCategory)
 
   //Usamos useEfect para extraer los datos mediante un fetch y async await de la API
   useEffect(() => {
@@ -66,7 +64,6 @@ export const ShopingCardProvider = ({children}) => {
     return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
   }
   const filteredItemsByCategory = (items, searchByCategory) => {
-    console.log("items: ", items)
     return items?.filter(item => item.category.name.toLowerCase().includes(searchByCategory.toLowerCase()))
   }
 

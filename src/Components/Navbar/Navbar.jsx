@@ -78,7 +78,7 @@ const Navbar = () => {
       </ul>
       <ul className='flex items-center gap-3'>
         <li>
-          <NavLink to="/">
+          <NavLink to="/my-orders/">
             My Orders
           </NavLink>
         </li>
