@@ -1,7 +1,7 @@
 import { useRoutes, BrowserRouter } from 'react-router-dom'
 import { ShopingCardProvider } from '../../Context/Context'
 import Home from '../Home/Home'
-import MyAccount from '../MyAccount/myAccount'
+import MyAccount from '../MyAccount/MyAccount'
 import MyOrder from '../MyOrder/MyOrder'
 import MyOrders from '../MyOrders/MyOrders'
 import NotFound from '../NotFound/NotFound'
