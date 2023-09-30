@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { ShopingCardContext } from "../../Context/Context";
-import Card from "../../components/Card/Card";
+import Card from "../../Components/Card/Card";
 import ProductDetail from "../../Components/ProductDetail/ProductDetail";
 
 const Home = () => {
