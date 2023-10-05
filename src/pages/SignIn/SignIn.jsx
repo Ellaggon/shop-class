@@ -12,8 +12,8 @@ function SignIn () {
   const parsedAccount = JSON.parse(account)
 
   // Si el usuario tiene cuanta "Has an account" sera true 
-  const noAccountInLocalStorage = parsedAccount ? Object.keys(parsedAccount).length === 0 : true
-  const noAccountInLocalState = context.account ? Object.keys(context.account).length === 0 : true
+  const noAccountInLocalStorage = parsedAccount ?Object.keys(parsedAccount).length === 0 : true
+  const noAccountInLocalState = context.account ?Object.keys(context.account).length === 0 : true
   const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState
 
   // Sign out in false...
