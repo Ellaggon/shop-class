@@ -1,9 +1,38 @@
 import { createContext, useState, useEffect } from "react";
 import apiUrl from "../api/api"
+import { stringify } from "postcss";
 
 export const ShopingCardContext = createContext();
 
+// Agregar key de account y sign out en el local storage (inicializar)
+export const initializeLocalStorage = () => {
+  const accountInLocalStorage = localStorage.getItem("account");
+  const signOutInLocalStorage = localStorage.getItem("sign-out");
+  let parsedAccount;
+  let parsedSignOut;
+
+  if (!accountInLocalStorage){
+    localStorage.setItem("account", JSON.stringify({}));
+    parsedAccount = {};
+  } else {
+    parsedAccount = JSON.parse(accountInLocalStorage);
+  }
+
+  if (!signOutInLocalStorage){
+    localStorage.setItem("sign-out", JSON.stringify(false))
+    parsedSignOut = false
+  } else {
+    parsedSignOut = JSON.parse(signOutInLocalStorage)
+  }
+}
+
 export const ShopingCardProvider = ({children}) => {
+
+  // Account
+  const [account, setAccount] = useState({})
+
+  // Sign Out
+  const [signOut, setSignOut] = useState(false)
 
   //Shoping Card - increment quantity
   const [count, setCount] = useState(0)
@@ -29,7 +58,7 @@ export const ShopingCardProvider = ({children}) => {
   
   // Shopping card - add products to card
   const [cardProducts, setCardProducts] = useState([])
-  
+
   // Shopping card - Order "creamos una orden de compra, es decir un listado con los productos escogidos en el carrito mas su info"
   const [order, setOrder] = useState([])
 
@@ -115,7 +144,11 @@ export const ShopingCardProvider = ({children}) => {
       filteredItems,
       setFilteredItems,
       searchByCategory,
-      setSearchByCategory
+      setSearchByCategory,
+      account,
+      setAccount,
+      signOut,
+      setSignOut
     }}> 
       {children}
     </ShopingCardContext.Provider>
