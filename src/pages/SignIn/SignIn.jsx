@@ -6,7 +6,6 @@ function SignIn () {
   const context = useContext(ShopingCardContext)
   const [view, setView] = useState("user-info")
   const form = useRef(null)
-
   // Account 
   const account = localStorage.getItem("account")
   const parsedAccount = JSON.parse(account)
@@ -68,8 +67,7 @@ function SignIn () {
       </div>
       <button
         className="border border-black disabled:text-black/40 disabled:border-black/40 rounded-lg w-full mt-6 py-3"
-        onClick={ () => setView("create-user-info") }
-        disabled={ hasUserAnAccount }>
+        onClick={ () => setView("create-user-info") }>
         Sign up for free!
       </button>
     </div>
