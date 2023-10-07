@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { ShopingCardContext } from "../../Context/Context";
 
-const ProductDetail = ( ) => {
+const ProductDetail = () => {
   const context = useContext(ShopingCardContext);
 
   return (
     <aside 
-    className={`${context.isProductDetailOpen ? "flex" : "hidden"} flex flex-col fixed right-0 m-3 border border-black bg-white rounded-lg w-[360px] h-[calc(100vh-80px)]`}>
+    className={`${context.isProductDetailOpen? "flex" : "hidden"} flex-col fixed right-5 border mt-1 border-black rounded-lg bg-white w-[360px] h-[calc(100vh-80px)]`}>
       <div className="flex justify-between items-center p-6">
         <h2 className="font-medium text-xl">Detail</h2>
         <button

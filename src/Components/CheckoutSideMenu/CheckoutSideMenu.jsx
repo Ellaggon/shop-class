@@ -15,7 +15,6 @@ const CheckoutSideMenu = ( ) => {
   }
   // El boton Checkout mandara el listado de la orden ejecutada a una base de datos
     const handleCheckout = () => {
-
       const orderToAdd = {
         date: "22.10.23",
         products: context.cardProducts,

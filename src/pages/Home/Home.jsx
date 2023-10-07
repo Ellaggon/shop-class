@@ -1,8 +1,7 @@
 import { useContext } from "react"
 import { ShopingCardContext } from "../../Context/Context";
-import ProductDetail from "../../Components/ProductDetail/ProductDetail";
+import Card from "../../Components/Card/Card";
 import Loader from "../../Components/Loader/Loader";
-import Card from "../../Components/Card";
 
 const Home = () => {
   const context = useContext(ShopingCardContext);
@@ -40,9 +39,7 @@ const Home = () => {
       {
         renderView()
       }
-    <ProductDetail />
     </section>
-
   )
 }
 

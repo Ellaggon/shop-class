@@ -44,7 +44,7 @@ const Card = ({id, title, images, price, description, category: {name}} ) => {
   return (
     <article
       className={"bg-white cursor-pointer w-40 md:w-56 h-60 rounded-lg truncate m-auto"}
-      onClick={() => showProduct({id, title, images, price, description} )}
+      onClick={() => showProduct({id, title, images, price, description}, context.openProductDetail())}
       >
       <figure className="relative mb-2 w-full h-4/5">
         <span className="absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 px-3 px">
